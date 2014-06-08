@@ -42,13 +42,65 @@
     
 
     <!-- SLIDES -->
-    <slide class="" id="slide-1" style="background:; background-repeat:no-repeat; background-position:center; ">
-  <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
-  <hgroup>
-    <h2>Outline</h2>
-  </hgroup>
-  <article data-timings="">
-    <ol>
+    <slide class="large" id="slide-1">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>R 是最火熱的分析工具之一</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-2">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>有時候</p>
+
+<p>我們需要分析不停變動的資料</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-3">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>需要有資料工程</p>
+
+<p>才能不停的取得分析用的資料</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-4">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>今天以親身經驗跟大家介紹</p>
+
+<p>我所建立的數個以R 為核心的系統</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-5">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>Outline</p>
+
+<ol>
 <li>定時進行資料的ETL以及和雲端資料庫的同步</li>
 <li>定時的機器學習系統建立服務所需的模型</li>
 <li>自動在雲端布署學習系統來進行電腦實驗及數據分析以改進機器學習的效能</li>
@@ -57,25 +109,188 @@
 <li>利用講者自行開發的CRAN套件進行系統狀態的通知</li>
 </ol>
 
-  </article>
-  <!-- Presenter Notes -->
+</article>
+<!-- Presenter Notes -->
 </slide>
+<slide class="segue dark" id="slide-6">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  <h2><div>定時進行資料的ETL以及</br></br>和雲端資料庫的同步</div></h2>
+</hgroup>
+<article class = 'flexbox vcenter'>
 
-<slide class="" id="slide-2" style="background:; background-repeat:no-repeat; background-position:center; ">
-  <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
-  <article data-timings="">
-    
-  </article>
-  <!-- Presenter Notes -->
+</article>
+<!-- Presenter Notes -->
 </slide>
+<slide class="large" id="slide-7">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>ETL</p>
 
+<p><img src="assets/img/ETL.png" class="fit100"/></p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-8">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>讀取檔案的具體步驟</p>
+
+<p>請期待R Tutorial系列課程</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-9">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>給一個檔案: </p>
+
+<p><code>impression201406012300.txt</code></p>
+
+<p>製作一個R script讀取該檔案:</p>
+
+<pre><code class="r">in_path &lt;- &quot;impression2014060123.txt&quot;
+# ...
+saveRDS(out, &quot;out.Rdata&quot;)
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-10">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>需要定時啟動器</p>
+
+<p>需要依據時間做不同的變化</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-11">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>定時啟動系統:</p>
+
+<h3>crontab，工作排程 <img src="assets/img/scheduler.jpeg" class="fit50"/></h3>
+
+<h3>jenkins <img src="assets/img/jenkins.png" class="fit50"/></h3>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-12">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>利用時間建立不同的行為</p>
+
+<pre><code class="r">saveRDS(out, 
+  sprintf(
+    &quot;out%s.Rdata&quot;, 
+    format(Sys.time(), &quot;%Y%m%d%H&quot;)
+  ))
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-13">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>事情不會永遠美好...</p>
+
+<p>我們需要寫記錄(Log)</p>
+
+<p>我們需要處理錯誤</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-14">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p><code>logging</code> </p>
+
+<p>一個R 中寫log的套件</p>
+
+<pre><code class="r">library(logging)
+basicConfig(&quot;DEBUG&quot;)
+logdebug(&quot;DEBUG&quot;)
+loginfo(&quot;INFO&quot;)
+logwarn(&quot;WARN&quot;)
+logerror(&quot;ERROR&quot;)
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-15">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>除錯後，需要追回耽誤的工作</p>
+
+<p>需要一個檢查工作是否完成的機制</p>
+
+<pre><code class="r">current &lt;- Sys.time()
+for(i in 0:23) {
+  target_time &lt;- current - 3600 * i
+  check_result &lt;- file.exists(sprintf(
+    &quot;out%s.Rdata&quot;, 
+    format(Sys.time(), &quot;%Y%m%d%H&quot;)
+  ))
+  # ...
+}
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-16">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Outline'>
+        data-slide=1 title=''>
          1
       </a>
     </li>
@@ -83,6 +298,90 @@
       <a href="#" target="_self" rel='tooltip' 
         data-slide=2 title=''>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title=''>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title=''>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title=''>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='<div>定時進行資料的ETL以及</br></br>和雲端資料庫的同步</div>'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title=''>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title=''>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title=''>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title=''>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title=''>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title=''>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title=''>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title=''>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title=''>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title=''>
+         16
       </a>
     </li>
   </ul>
