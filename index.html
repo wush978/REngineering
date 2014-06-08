@@ -42,7 +42,7 @@
     
 
     <!-- SLIDES -->
-    <slide class="large" id="slide-1">
+    <slide class="large" id="slide-1" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -53,7 +53,7 @@
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-2">
+<slide class="large" id="slide-2" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -66,7 +66,7 @@
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-3">
+<slide class="large" id="slide-3" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -79,7 +79,7 @@
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-4">
+<slide class="large" id="slide-4" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -92,7 +92,7 @@
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-5">
+<slide class="large" id="slide-5" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -112,17 +112,18 @@
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="segue dark" id="slide-6">
-<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
-<hgroup>
-  <h2><div>定時進行資料的ETL以及</br></br>和雲端資料庫的同步</div></h2>
-</hgroup>
-<article class = 'flexbox vcenter'>
-
-</article>
-<!-- Presenter Notes -->
+<slide class="segue dark" id="slide-6" style="background:; background-repeat:no-repeat; background-position:center; ">
+  <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+  <hgroup>
+    <h2><div>定時進行資料的ETL以及</br></br>和雲端資料庫的同步</div></h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-7">
+
+<slide class="large" id="slide-7" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -135,7 +136,7 @@
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-8">
+<slide class="large" id="slide-8" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -148,7 +149,7 @@
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-9">
+<slide class="large" id="slide-9" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -168,7 +169,7 @@ saveRDS(out, &quot;out.Rdata&quot;)
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-10">
+<slide class="large" id="slide-10" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -181,7 +182,7 @@ saveRDS(out, &quot;out.Rdata&quot;)
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-11">
+<slide class="large" id="slide-11" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -193,16 +194,20 @@ saveRDS(out, &quot;out.Rdata&quot;)
 
 <h3>jenkins <img src="assets/img/jenkins.png" class="fit50"/></h3>
 
+<p>再利用<code>Rscript</code>透過命令列來啟動R 執行指定的Script</p>
+
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-12">
+<slide class="large" id="slide-12" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
 </hgroup>
 <article class = 'flexbox vcenter'>
 <p>利用時間建立不同的行為</p>
+
+<p><code>Sys.time</code> + <code>format</code></p>
 
 <pre><code class="r">saveRDS(out, 
   sprintf(
@@ -214,7 +219,7 @@ saveRDS(out, &quot;out.Rdata&quot;)
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-13">
+<slide class="large" id="slide-13" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -226,10 +231,12 @@ saveRDS(out, &quot;out.Rdata&quot;)
 
 <p>我們需要處理錯誤</p>
 
+<p><img src="assets/img/bluescreen.png" /></p>
+
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-14">
+<slide class="large" id="slide-14" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -250,7 +257,7 @@ logerror(&quot;ERROR&quot;)
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-15">
+<slide class="large" id="slide-15" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -258,7 +265,7 @@ logerror(&quot;ERROR&quot;)
 <article class = 'flexbox vcenter'>
 <p>除錯後，需要追回耽誤的工作</p>
 
-<p>需要一個檢查工作是否完成的機制</p>
+<p>需要一個檢查工作是否完成的機制: <code>file.exists</code></p>
 
 <pre><code class="r">current &lt;- Sys.time()
 for(i in 0:23) {
@@ -274,12 +281,674 @@ for(i in 0:23) {
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-16">
+<slide class="large" id="slide-16" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
 </hgroup>
 <article class = 'flexbox vcenter'>
+<p>和雲端(AWS S3)同步</p>
+
+<p>需要客戶端(Client)</p>
+
+<p>但是R 可能沒有好的客戶端套件</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-17" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>R 提供<code>system</code>來呼叫命令列程序</p>
+
+<p>可傳遞命令列參數</p>
+
+<p>並且接收程序的回傳值，或截取stdout</p>
+
+<p>可用於檢查是否有錯</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-18" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>可利用<a href="http://aws.amazon.com/cn/cli/">AWS CLI</a>自動將資料上傳S3</p>
+
+<pre><code class="r">cmd &lt;- sprintf(&quot;aws s3api put-object --bucket %s --key %s --body %s %s %s&quot;,
+  bucket, key, path, md5base64, class)
+retval &lt;- system(cmd, return = TRUE)
+</code></pre>
+
+<p>回傳結果的JSON，也可以利用rjson來處理</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-19" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>一次性的程序和自動化程序的距離：</p>
+
+<h3>利用如jenkins等定時啟動器透過命令列呼叫Rscript</h3>
+
+<h3>需要依賴時間做出不同的行為</h3>
+
+<h3>能夠檢查先前的結果是否有誤</h3>
+
+<h3>利用如logging等套件進行記錄</h3>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-20" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>R 的擴充性</p>
+
+<h3>大量的套件提供的功能</h3>
+
+<h3>利用<code>system</code>和字串處理來擴充功能</h3>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="segue dark" id="slide-21" style="background:; background-repeat:no-repeat; background-position:center; ">
+  <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+  <hgroup>
+    <h2><div>定時的機器學習系統</br></br>建立服務所需的模型</div></h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="large" id="slide-22" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>我們已經談過如何建立<code>定時</code>、<code>自動化</code>的R 程序</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-23" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>我們可以來談談更複雜的需求</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-24" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>模型常常需要調整</p>
+
+<p>需要參數來控制模型的學習</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-25" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>我們應該不想看到:</p>
+
+<pre><code>.
+|--- LR_Scripts
+    |--- logistic_regression_C_0.1.R
+    |--- logistic_regression_C_0.1_Neg_Sample.R
+    |--- logistic_regression_C_0.5.R
+    |--- logistic_regression_C_1.0.R...
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-26" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>R 的程序是可以吃參數的</p>
+
+<pre><code class="r">argv &lt;- commandArgs()
+print(argv)
+</code></pre>
+
+<pre><code>## [1] &quot;/opt/local/Library/Frameworks/R.framework/Resources/bin/exec/R&quot;
+## [2] &quot;--slave&quot;                                                       
+## [3] &quot;--no-restore&quot;                                                  
+## [4] &quot;-e&quot;                                                            
+## [5] &quot;library(slidify);slidify(&#39;index.Rmd&#39;)&quot;                         
+## [6] &quot;--args&quot;
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-27" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>更可以利用套件如<code>optparse</code></p>
+
+<p>增強命令列參數的功能</p>
+
+<h3>預設參數</h3>
+
+<h3>必要參數與可忽略參數</h3>
+
+<h3>參數的說明</h3>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-28" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<pre><code class="r">library(optparse)
+opt &lt;- parse_args(OptionParser(option_list=list(
+  make_option(&quot;--C&quot;, default=1.0, help=&quot;The value of regularization parameter&quot;),
+  make_option(&quot;--NegSample&quot;, default=FALSE, help=&quot;Whether sample the negative data&quot;)
+  )))
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-29" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>模型需要部署到前端的服務器上</p>
+
+<p>服務器不是R (如<a href="http://nodejs.org/">nodejs</a>)</p>
+
+<p>透過資料庫(如:<a href="http://www.mongodb.org/">MongoDB</a>)會比較方便</p>
+
+<p><img src="assets/img/mongodb.png" class="fit100"/></p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-30" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>可以利用<a href="https://github.com/mongosoup/rmongodb">rmongodb</a>達成任務</p>
+
+<p><img src="assets/img/rmongodb.png" class="fit100"/></p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-31" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>更複雜的自動化工作</p>
+
+<h3>可利用命令列參數來調整行為</h3>
+
+<h3>可利用資料庫和其他工具溝通</h3>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="segue dark" id="slide-32" style="background:; background-repeat:no-repeat; background-position:center; ">
+  <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+  <hgroup>
+    <h2><div>自動在雲端布署學習系統</br></br>來進行電腦實驗及數據分析</br></br>以改進機器學習的效能</div></h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="large" id="slide-33" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>模型需要調整</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-34" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>調整需要實驗的驗證</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-35" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>如何在限時內進行大量實驗</p>
+
+<p>攸關這類企業的競爭力</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-36" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>AWS 提供這樣的可能</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-37" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>R 和AWS 的整合則較為間接</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-38" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>透過預先設定好的AMI</p>
+
+<p>以及上述的AWSCLI</p>
+
+<p>和命令列參數的整合</p>
+
+<p>可以自動開出任意數量的虛擬機器跑實驗</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-39" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>利用ssh遠端執行R 程序</p>
+
+<p>可以自動在雲端進行實驗</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-40" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>訣竅和上述介紹的方法雷同</p>
+
+<p>只是應用上更為複雜</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-41" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>太過複雜的功能</p>
+
+<p>使用一個個Scripts來管理非常不方便</p>
+
+<pre><code class="r">library(optparse)
+library(logging)
+source(&quot;/home/wush/Rs3/s3_put_api.R&quot;)
+source(&quot;/home/wush/Rs3s3_get_api.R&quot;)
+source(&quot;ssh_agent.R&quot;)
+source(&quot;learning.R&quot;)
+# ...
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-42" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>發佈到其他機器上也不方便</p>
+
+<pre><code class="r">source(&quot;learning.R&quot;)
+</code></pre>
+
+<pre><code>## Warning: 無法開啟檔案 &#39;learning.R&#39; ：No such file or directory
+</code></pre>
+
+<pre><code>## Error: 無法開啟連結
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-43" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>透過自製套件可以將客製化程序整合</p>
+
+<p>並且解決不同系統間的路徑問題</p>
+
+<pre><code class="r">library(RAWSCLI)
+# s3api_get_object
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-44" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>只要用到對的工具</p>
+
+<p>目前自製R 套件非常的容易</p>
+
+<p>五分鐘學會如何使用Rstudio建立R套件:</p>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/OCQU6M4pPiw" frameborder="0" allowfullscreen></iframe>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-45" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>把跑機器學習的Scripts包成套件</p>
+
+<p>讓雲端上的AMI來安裝套件</p>
+
+<p>把寫好的R Scripts部署到雲端上</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="segue dark" id="slide-46" style="background:; background-repeat:no-repeat; background-position:center; ">
+  <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+  <hgroup>
+    <h2><div>利用客製化的Dashboard</br></br>來監控系統成效</div></h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="large" id="slide-47" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>2012年Rstudio Inc.發佈了<a href="http://shiny.rstudio.com/">Shiny</a>套件</p>
+
+<p>R 使用者已經可以開發簡單的網頁應用</p>
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/3Y81BCQvd-o" frameborder="0" allowfullscreen></iframe>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-48" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>利用R 定時分析資料</p>
+
+<p>再利用<a href="http://www.rstudio.com/products/shiny/shiny-server/">Shiny Server</a></p>
+
+<p>搭建Dashboard應用服務</p>
+
+<iframe width="560" height="315" src="http://shiny.rstudio.com/gallery/" frameborder="0"></iframe>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="dark segue" id="slide-49" style="background:; background-repeat:no-repeat; background-position:center; ">
+  <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+  <hgroup>
+    <h2>利用jenkins達成</br></br>R 套件的自動測試和布署</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="large" id="slide-50" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>R 的套件原始碼</p>
+
+<p>可以利用git來管理</p>
+
+<p><img src="assets/img/github.png" class="fit100" /></p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-51" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>R 本身備有以下套件相關的功能：</p>
+
+<p>打包</p>
+
+<p>測試</p>
+
+<p>安裝</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-52" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>R + Web Service(如: Apache)</p>
+
+<p>就可以部署私有套件的Repository</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-53" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>Jenkins等服務</p>
+
+<p>具備有輪詢git觸發事件的功能</p>
+
+<p><img src="assets/img/jenkinsci.png" class="fit100" /></p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-54" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>將兩者結合在一起</p>
+
+<p>就可以利用jenkins達成</p>
+
+<p>R 套件的自動測試和布署</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-55" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>開發流程</p>
+
+<h3>本地端開發完成，更新版本，git push到git repository</h3>
+
+<h3>jenkins獲知git repository已更新，開始套件的測試</h3>
+
+<h3>套件測試通過，利用<code>R CMD</code>部署套件到私有R Repository</h3>
+
+<h3>連線到其他機器，自動更新到最新版本的套件</h3>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-56" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>出現錯誤，需要退版</p>
+
+<p>可以指定需要安裝的套件版本</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="dark segue" id="slide-57" style="background:; background-repeat:no-repeat; background-position:center; ">
+  <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+  <hgroup>
+    <h2>利用講者自行開發的</br></br>CRAN套件進行系統狀態的通知</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="large" id="slide-58" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>當出現嚴重錯誤時</p>
+
+<p>若我們希望能及時收到通知</p>
+
+<p>可以利用如<code>RMessenger</code>等套件直接聯繫</p>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-59" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>R 可以自定錯誤發生後的行為</p>
+
+<pre><code class="r">options(error = function() {
+  library(RMessenger)
+  sendXMPPMessage(&quot;sender@gmail.com&quot;, &quot;senderpass&quot;, &quot;your@gmail.com&quot;, 
+                  geterrmessage())
+})
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-60" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
+<p>感謝各位的聆聽</p>
+
+<p>Q&amp;A</p>
 
 </article>
 <!-- Presenter Notes -->
@@ -382,6 +1051,270 @@ for(i in 0:23) {
       <a href="#" target="_self" rel='tooltip' 
         data-slide=16 title=''>
          16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title=''>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title=''>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title=''>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title=''>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='<div>定時的機器學習系統</br></br>建立服務所需的模型</div>'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title=''>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title=''>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title=''>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title=''>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title=''>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title=''>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title=''>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title=''>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title=''>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title=''>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='<div>自動在雲端布署學習系統</br></br>來進行電腦實驗及數據分析</br></br>以改進機器學習的效能</div>'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title=''>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title=''>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title=''>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title=''>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title=''>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title=''>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title=''>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title=''>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title=''>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title=''>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title=''>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title=''>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title=''>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='<div>利用客製化的Dashboard</br></br>來監控系統成效</div>'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title=''>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title=''>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='利用jenkins達成</br></br>R 套件的自動測試和布署'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title=''>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title=''>
+         51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title=''>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title=''>
+         53
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=54 title=''>
+         54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title=''>
+         55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title=''>
+         56
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=57 title='利用講者自行開發的</br></br>CRAN套件進行系統狀態的通知'>
+         57
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=58 title=''>
+         58
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=59 title=''>
+         59
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=60 title=''>
+         60
       </a>
     </li>
   </ul>
