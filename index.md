@@ -10,95 +10,134 @@ widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 --- &vcenter .large
 
+<script>var youtube_entered = {};</script>
+
+
 R 是最火熱的分析工具之一
 
 --- &vcenter .large
 
-有時候
-
-我們需要分析不停變動的資料
+要有資料，才能分析
 
 --- &vcenter .large
 
-需要有資料工程
+需要資料工程
 
-才能不停的取得分析用的資料
+才能不停的取得及時、可分析的資料
 
---- &vcenter .large
+--- &twocolvcenter
 
-今天以親身經驗跟大家介紹
+*** =left
 
-我所建立的數個以R 為核心的系統
+## 關於講者
+
+- Wush Wu
+- Taiwan R User Group 創辦人
+- 喜歡用R 解決問題
+- 快樂的研究人員
+    - 預測網路廣告的點擊行為
+- 快樂的碼農
+
+*** =right
+
+<img src="assets/img/farmer.jpg" class="fit100"/>
+
+--- &vcenternobg .large
+
+<img src="assets/img/MLDMMonday.jpg" class="grayscale fit100" />
+
+Taiwan R User Group
+
+MLDMMonday: 每週一分享資料相關議題
+
+主題包含但不限於：
+
+R 套件使用
+
+機器學習和統計模型
+
+http://www.meetup.com/Taiwan-R
 
 --- &vcenter .large
 
 Outline
 
-1. 定時進行資料的ETL以及和雲端資料庫的同步
-2. 定時的機器學習系統建立服務所需的模型
-3. 自動在雲端布署學習系統來進行電腦實驗及數據分析以改進機器學習的效能
-4. 利用客製化的Dashboard來監控系統成效
-5. 利用jenkins達成R 套件的自動測試和布署
-6. 利用講者自行開發的CRAN套件進行系統狀態的通知
+1. 定時進行資料的ETL和雲端資料庫的同步
+1. 定時運作的學習系統
+1. 自動在雲端布署實驗系統
+1. 自製和管理R的套件
+1. 利用客製化的Dashboard來監控系統成效
+1. R 套件和CI(Continuous Integration)
+1. 利用CRAN套件進行系統狀態的通知
 
 --- .segue .dark
 
-## <div>定時進行資料的ETL以及</br></br>和雲端資料庫的同步</div>
+## <div>定時進行資料的ETL</br></br>和雲端資料庫的同步</div>
 
 --- &vcenter .large
 
-ETL
+Extract, Transform, and Load
 
-<img src="assets/img/ETL.png" class="fit100"/>
+<img src="assets/img/one_piece.jpeg" class="fit50"/>
 
---- &vcenter .large
+想要我的財寶嗎？想要的話可以全部給你
 
-讀取檔案的具體步驟
-
-請期待R Tutorial系列課程
+去爬吧！我把所有的資訊都放在那裡了。
 
 --- &vcenter .large
 
-給一個檔案: 
+基礎工程能力
+
+請期待社群接下來的線上、實體課程
+
+<img src="assets/img/tutorial.png" class="grayscale fit100" />
+
+--- &vcenter .large
+
+給一些資料源
 
 `impression201406012300.txt`
 
-製作一個R script讀取該檔案:
+製作一個R script處理檔案並不難
 
 ```r
-in_path <- "impression2014060123.txt"
-# ...
+in_path <- readLines("impression2014060123.txt")
+# 我爬, 我爬, 我爬爬爬
 saveRDS(out, "out.Rdata")
 ```
 
 --- &vcenter .large
 
-需要定時啟動器
+資料源是資料庫?
 
-需要依據時間做不同的變化
+R 有豐富資料庫相關的套件
+
+<div class="rimage center"><img src="assets/fig/db_wordcount.png" title="plot of chunk db_wordcount" alt="plot of chunk db_wordcount" class="plot" /></div>
+
+--- &vcenter .large
+
+但是資料一直在變化
+
+需要把一次性的工作變成持續性
+
+需要讓工作能夠自動化
+
+--- &youtube yt:A1IIcZW5UrI
 
 --- &vcenter .large
 
 定時啟動系統:
 
-### crontab，工作排程 <img src="assets/img/scheduler.jpeg" class="fit50"/>
+### crontab，工作排程
 ### jenkins <img src="assets/img/jenkins.png" class="fit50"/>
-
-再利用`Rscript`透過命令列來啟動R 執行指定的Script
 
 --- &vcenter .large
 
 利用時間建立不同的行為
 
-`Sys.time` + `format`
+R 有豐富的時間相關工具函數
 
-```r
-saveRDS(out, 
-  sprintf(
-    "out%s.Rdata", 
-    format(Sys.time(), "%Y%m%d%H")
-  ))
-```
+<div class="rimage center"><img src="assets/fig/posix_wordcount.png" title="plot of chunk posix_wordcount" alt="plot of chunk posix_wordcount" class="plot" /></div>
 
 --- &vcenter .large 
 
@@ -112,58 +151,31 @@ saveRDS(out,
 
 --- &vcenter .large
 
-`logging` 
+R 也有許多寫log用的套件
 
-一個R 中寫log的套件
-
-```r
-library(logging)
-basicConfig("DEBUG")
-logdebug("DEBUG")
-loginfo("INFO")
-logwarn("WARN")
-logerror("ERROR")
-```
+<div class="rimage center"><img src="assets/fig/log_wordcount.png" title="plot of chunk log_wordcount" alt="plot of chunk log_wordcount" class="plot" /></div>
 
 --- &vcenter .large
 
 除錯後，需要追回耽誤的工作
 
-需要一個檢查工作是否完成的機制: `file.exists`
+R 也有豐富的檔案系統相關工具
 
-```r
-current <- Sys.time()
-for(i in 0:23) {
-  target_time <- current - 3600 * i
-  check_result <- file.exists(sprintf(
-    "out%s.Rdata", 
-    format(Sys.time(), "%Y%m%d%H")
-  ))
-  # ...
-}
-```
+<div class="rimage center"><img src="assets/fig/file_wordcount.png" title="plot of chunk file_wordcount" alt="plot of chunk file_wordcount" class="plot" /></div>
 
 --- &vcenter .large
 
-和雲端(AWS S3)同步
+為了和雲端(AWS S3)同步
 
-需要客戶端(Client)
+python 有 [boto](http://boto.readthedocs.org/en/latest/)
 
-但是R 可能沒有好的客戶端套件
+command line 有 [awscli](http://aws.amazon.com/cn/cli/)
+
+R 可以站在這些工具上
 
 --- &vcenter .large
 
 R 提供`system`來呼叫命令列程序
-
-可傳遞命令列參數
-
-並且接收程序的回傳值，或截取stdout
-
-可用於檢查是否有錯
-
---- &vcenter .large
-
-可利用[AWS CLI](http://aws.amazon.com/cn/cli/)自動將資料上傳S3
 
 ```r
 cmd <- sprintf("aws s3api put-object --bucket %s --key %s --body %s %s %s",
@@ -171,7 +183,12 @@ cmd <- sprintf("aws s3api put-object --bucket %s --key %s --body %s %s %s",
 retval <- system(cmd, return = TRUE)
 ```
 
-回傳結果的JSON，也可以利用rjson來處理
+回傳結果的JSON，也可以利用`rjson`來處理
+
+```r
+library(rjson)
+fromJSON(retval)
+```
 
 --- &vcenter .large
 
@@ -195,11 +212,11 @@ R 的擴充性
 
 --- .segue .dark
 
-## <div>定時的機器學習系統</br></br>建立服務所需的模型</div>
+## <div>定時運作的學習系統</br>
 
 --- &vcenter .large
 
-我們已經談過如何建立`定時`、`自動化`的R 程序
+已經有`定時`、`自動化`的R 程式
 
 --- &vcenter .large
 
@@ -207,9 +224,9 @@ R 的擴充性
 
 --- &vcenter .large
 
-模型常常需要調整
+機器學習的模型有很多參數
 
-需要參數來控制模型的學習
+參數需要調整
 
 --- &vcenter .large
 
@@ -229,18 +246,13 @@ R 的擴充性
 R 的程序是可以吃參數的
 
 
-```r
-argv <- commandArgs()
-print(argv)
 ```
-
-```
-## [1] "/opt/local/Library/Frameworks/R.framework/Resources/bin/exec/R"
-## [2] "--slave"                                                       
-## [3] "--no-restore"                                                  
-## [4] "-e"                                                            
-## [5] "library(slidify);slidify('index.Rmd')"                         
-## [6] "--args"
+[1] "/opt/local/Library/Frameworks/R.framework/Resources/bin/exec/R"
+[2] "--slave"                                                       
+[3] "--no-restore"                                                  
+[4] "-e"                                                            
+[5] "library(slidify);slidify('index.Rmd')"                         
+[6] "--args"                                                        
 ```
 
 --- &vcenter .large
@@ -264,21 +276,41 @@ opt <- parse_args(OptionParser(option_list=list(
   )))
 ```
 
+
+```
+Usage: optparse.example.R [options]
+
+
+Options:
+	--C=C
+		The value of regularization parameter
+
+	--NegSample=NEGSAMPLE
+		Whether sample the negative data
+
+	-h, --help
+		Show this help message and exit
+```
+
 --- &vcenter .large
 
-模型需要部署到前端的服務器上
+部署機器學習的結果時
 
-服務器不是R (如[nodejs](http://nodejs.org/))
+很可能需要和其他工具溝通
 
-透過資料庫(如:[MongoDB](http://www.mongodb.org/))會比較方便
-
-<img src="assets/img/mongodb.png" class="fit100"/>
+透過資料庫很方便
 
 --- &vcenter .large
 
-可以利用[rmongodb](https://github.com/mongosoup/rmongodb)達成任務
+R 擁有豐富的資料庫相關套件
 
-<img src="assets/img/rmongodb.png" class="fit100"/>
+<div class="rimage center"><img src="assets/fig/db_wordcount2.png" title="plot of chunk db_wordcount2" alt="plot of chunk db_wordcount2" class="plot" /></div>
+
+--- &vcenter .large
+
+也可以透過Rcpp + Boost Serialization
+
+和其他工具傳遞Binary
 
 --- &vcenter .large
 
@@ -289,25 +321,31 @@ opt <- parse_args(OptionParser(option_list=list(
 
 --- .segue .dark
 
-## <div>自動在雲端布署學習系統</br></br>來進行電腦實驗及數據分析</br></br>以改進機器學習的效能</div>
+## <div>自動在雲端布署實驗系統</br>
 
 --- &vcenter .large
 
-模型需要調整
+模型的參數需要調整
 
 --- &vcenter .large
 
-調整需要實驗的驗證
+調整參數需要實驗
 
 --- &vcenter .large
 
-如何在限時內進行大量實驗
+如何有效率的進行大量實驗
 
-攸關這類企業的競爭力
+攸關企業的競爭力
+
+<img src="assets/img/cycle.png" class="fit100" />
 
 --- &vcenter .large
 
-AWS 提供這樣的可能
+跑實驗需要臨時性的運算資源
+
+現在有許多雲端解決方案
+
+提供彈性的運算資源
 
 --- &vcenter .large
 
@@ -322,12 +360,6 @@ R 和AWS 的整合則較為間接
 和命令列參數的整合
 
 可以自動開出任意數量的虛擬機器跑實驗
-
---- &vcenter .large
-
-利用ssh遠端執行R 程序
-
-可以自動在雲端進行實驗
 
 --- &vcenter .large
 
@@ -353,7 +385,7 @@ source("learning.R")
 
 --- &vcenter .large
 
-發佈到其他機器上也不方便
+在雲端上部署實驗環境也不方便
 
 
 ```r
@@ -361,22 +393,24 @@ source("learning.R")
 ```
 
 ```
-## Warning: 無法開啟檔案 'learning.R' ：No such file or directory
+Error: 無法開啟連結
 ```
 
-```
-## Error: 無法開啟連結
-```
+--- .segue .dark
+
+## <div>自製和管理R的套件</div>
 
 --- &vcenter .large
 
-透過自製套件可以將客製化程序整合
+散布R 應用到其他機器
+
+需要用套件(package)
 
 並且解決不同系統間的路徑問題
 
 
 ```r
-library(RAWSCLI)
+# library(RAWSCLI)
 # s3api_get_object
 ```
 
@@ -386,9 +420,7 @@ library(RAWSCLI)
 
 目前自製R 套件非常的容易
 
-五分鐘學會如何使用Rstudio建立R套件:
-
-<iframe width="420" height="315" src="http://www.youtube.com/embed/OCQU6M4pPiw" frameborder="0" allowfullscreen></iframe>
+--- &youtube yt:OCQU6M4pPiw
 
 --- &vcenter .large
 
@@ -397,6 +429,43 @@ library(RAWSCLI)
 讓雲端上的AMI來安裝套件
 
 把寫好的R Scripts部署到雲端上
+
+--- &vcenter .large
+
+利用`.Rprofile`可以指向預設的套件庫
+
+```r
+options(repos=structure(c(
+  My_R_Repository="http://xxx.xxx.xxx.xxx",
+  CRAN="http://cran.csie.ntu.edu.tw/", 
+  omegahat="http://www.omegahat.org/R"
+  )))
+```
+
+--- &vcenter .large
+
+架設R 的Private Repository很容易
+
+Web Server
+
+`tools::write_PACKAGES`
+
+```r
+## Not run: 
+write_PACKAGES("c:/myFolder/myRepository")  # on Windows
+write_PACKAGES("/pub/RWin/bin/windows/contrib/2.9",
+               type = "win.binary")  # on Linux
+
+## End(Not run)
+```
+
+--- &vcenter .large
+
+利用Jenkins + git + R
+
+自動部署至Private Repository
+
+<img src="assets/img/jenkinsci.png" />
 
 --- .segue .dark
 
@@ -408,7 +477,7 @@ library(RAWSCLI)
 
 R 使用者已經可以開發簡單的網頁應用
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/3Y81BCQvd-o" frameborder="0" allowfullscreen></iframe>
+--- &youtube yt:3Y81BCQvd-o
 
 --- &vcenter .large
 
@@ -418,11 +487,23 @@ R 使用者已經可以開發簡單的網頁應用
 
 搭建Dashboard應用服務
 
-<iframe width="560" height="315" src="http://shiny.rstudio.com/gallery/" frameborder="0"></iframe>
+<img src="assets/img/shiny_example.png" class="fit50" />
+
+--- &vcenter .large
+
+搭配R 強大的繪圖功能
+
+<div class="rimage center"><img src="assets/fig/figure_wordclout.png" title="plot of chunk figure_wordclout" alt="plot of chunk figure_wordclout" class="plot" /></div>
+
+--- &vcenter .large
+
+Shiny 的使用上，社群也有許多學習資源
+
+--- &youtube yt:3Y81BCQvd-o
 
 --- .dark .segue
 
-## 利用jenkins達成</br></br>R 套件的自動測試和布署
+## R 套件和CI(Continuous Integration)
 
 --- &vcenter .large
 
@@ -440,33 +521,49 @@ R 本身備有以下套件相關的功能：
 
 測試
 
-安裝
+部署
+
+能和CI工具整合
+
+--- &vcenter .large
+
+`R CMD check` 就可以運作各種測試
+
+`RUnit`, `testthat`, `svUnit`
+
+協助寫單元測試
 
 --- &vcenter .large
 
 R + Web Service(如: Apache)
 
-就可以部署私有套件的Repository
+建立私有Repository
+
+CI工具部署套件至私有Repository
+
+再通知其他機器更新套件
 
 --- &vcenter .large
 
-Jenkins等服務
+[Jenkins](http://jenkins-ci.org/) + [gitosis]()
 
-具備有輪詢git觸發事件的功能
-
-<img src="assets/img/jenkinsci.png" class="fit100" />
+<img src="assets/img/jenkinsci.png" class="fit50"/>
 
 --- &vcenter .large
 
-將兩者結合在一起
+Jenkins 已有支援R 的Plugin
 
-就可以利用jenkins達成
-
-R 套件的自動測試和布署
+<img src="assets/img/jenkins_R.png" class="fit50"/>
 
 --- &vcenter .large
 
-開發流程
+另一個CI的工具：
+
+[Github](https://github.com) + [travis CI](https://travis-ci.org/)
+
+<img src="assets/img/travisci.png" class="fit50"/>
+
+--- &vcenter .large
 
 ### 本地端開發完成，更新版本，git push到git repository
 
@@ -482,9 +579,11 @@ R 套件的自動測試和布署
 
 可以指定需要安裝的套件版本
 
+`base::numeric_version`
+
 --- .dark .segue
 
-## 利用講者自行開發的</br></br>CRAN套件進行系統狀態的通知
+## 利用CRAN套件進行系統狀態的通知
 
 --- &vcenter .large
 
@@ -492,12 +591,13 @@ R 套件的自動測試和布署
 
 若我們希望能及時收到通知
 
-可以利用如`RMessenger`等套件直接聯繫
+可以利用如`RMessenger`等套件
+
+<img src="assets/img/RMessenger.png" class="fit50" />
 
 --- &vcenter .large
 
 R 可以自定錯誤發生後的行為
-
 
 ```r
 options(error = function() {

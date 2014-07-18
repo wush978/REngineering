@@ -1,0 +1,16 @@
+---
+layout: slide
+---
+
+<script>
+youtube_entered["{{{slide.id}}}"] = false;
+$('#{{slide.id}}').on('slideenter', function(){
+  if (youtube_entered["{{{slide.id}}}"]) return;
+  $(this).find('article')
+    .append('<iframe width="640" height="360" src="http://www.youtube.com/embed/{{{slide.yt}}}?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>')
+  youtube_entered["{{{slide.id}}}"] = true;
+});
+/*$('.YT').on('slideleave', function(){
+  $(this).find('iframe').remove();
+});*/
+</script>

@@ -1,5 +1,10 @@
 base
-RAWSCLI
-Rcpp
-rjson
+data.table
+dplyr
+knitr
+rbenchmark
+RColorBrewer
+reshape2
 slidify
+wordcloud
+xtable
