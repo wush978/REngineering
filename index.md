@@ -183,7 +183,9 @@ cmd <- sprintf("aws s3api put-object --bucket %s --key %s --body %s %s %s",
 retval <- system(cmd, return = TRUE)
 ```
 
-回傳結果的JSON，也可以利用`rjson`來處理
+回傳結果的JSON
+
+可以利用`rjson`來處理
 
 ```r
 library(rjson)
@@ -369,6 +371,24 @@ R 和AWS 的整合則較為間接
 
 --- &vcenter .large
 
+```r
+obj@env$spot_request <- ec2_request_spot_instances(
+  obj@price,
+  obj@count,
+  local({
+    j <- gen_instance_spec(obj@key.name, obj@instance_type, list(obj@key.name), obj@ami)
+    j$BlockDeviceMappings <- list(list(DeviceName = "/dev/sdf", Ebs = list(VolumeSize = 50L)))
+    j
+  })
+  )
+loginfo(sprintf("spot request id: %s", paste(get_spot_request_id(obj@env$spot_request), collapse=",")))
+obj@env$instance_ids <- wait_spot_request(get_spot_request_id(obj@env$spot_request))
+loginfo(sprintf("instance id: %s", paste(obj@env$instance_ids, collapse=",")))
+obj@env$instances <- wait_instance_running(obj@env$instance_ids)
+```
+
+--- &vcenter .large
+
 太過複雜的功能
 
 使用一個個Scripts來管理非常不方便
@@ -376,8 +396,8 @@ R 和AWS 的整合則較為間接
 ```r
 library(optparse)
 library(logging)
-source("/home/wush/Rs3/s3_put_api.R")
-source("/home/wush/Rs3s3_get_api.R")
+source("/home/wush/ec2/ec2_request_spot_instances.R")
+source("/home/wush/ec2/get_spot_request_id.R")
 source("ssh_agent.R")
 source("learning.R")
 # ...
@@ -410,8 +430,7 @@ Error: 無法開啟連結
 
 
 ```r
-# library(RAWSCLI)
-# s3api_get_object
+library(RAWSCLI)
 ```
 
 --- &vcenter .large
@@ -564,6 +583,8 @@ Jenkins 已有支援R 的Plugin
 <img src="assets/img/travisci.png" class="fit50"/>
 
 --- &vcenter .large
+
+Work Flow
 
 ### 本地端開發完成，更新版本，git push到git repository
 

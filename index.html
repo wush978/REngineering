@@ -366,7 +366,9 @@ $('#slide-13').on('slideenter', function(){
 retval &lt;- system(cmd, return = TRUE)
 </code></pre>
 
-<p>回傳結果的JSON，也可以利用<code>rjson</code>來處理</p>
+<p>回傳結果的JSON</p>
+
+<p>可以利用<code>rjson</code>來處理</p>
 
 <pre><code class="r">library(rjson)
 fromJSON(retval)
@@ -708,14 +710,38 @@ Options:
   
 </hgroup>
 <article class = 'flexbox vcenter'>
+<pre><code class="r">obj@env$spot_request &lt;- ec2_request_spot_instances(
+  obj@price,
+  obj@count,
+  local({
+    j &lt;- gen_instance_spec(obj@key.name, obj@instance_type, list(obj@key.name), obj@ami)
+    j$BlockDeviceMappings &lt;- list(list(DeviceName = &quot;/dev/sdf&quot;, Ebs = list(VolumeSize = 50L)))
+    j
+  })
+  )
+loginfo(sprintf(&quot;spot request id: %s&quot;, paste(get_spot_request_id(obj@env$spot_request), collapse=&quot;,&quot;)))
+obj@env$instance_ids &lt;- wait_spot_request(get_spot_request_id(obj@env$spot_request))
+loginfo(sprintf(&quot;instance id: %s&quot;, paste(obj@env$instance_ids, collapse=&quot;,&quot;)))
+obj@env$instances &lt;- wait_instance_running(obj@env$instance_ids)
+</code></pre>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+<slide class="large" id="slide-44" style="background:; background-repeat:no-repeat; background-position:center; ">
+<img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
+<hgroup>
+  
+</hgroup>
+<article class = 'flexbox vcenter'>
 <p>太過複雜的功能</p>
 
 <p>使用一個個Scripts來管理非常不方便</p>
 
 <pre><code class="r">library(optparse)
 library(logging)
-source(&quot;/home/wush/Rs3/s3_put_api.R&quot;)
-source(&quot;/home/wush/Rs3s3_get_api.R&quot;)
+source(&quot;/home/wush/ec2/ec2_request_spot_instances.R&quot;)
+source(&quot;/home/wush/ec2/get_spot_request_id.R&quot;)
 source(&quot;ssh_agent.R&quot;)
 source(&quot;learning.R&quot;)
 # ...
@@ -724,7 +750,7 @@ source(&quot;learning.R&quot;)
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-44" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-45" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -741,7 +767,7 @@ source(&quot;learning.R&quot;)
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="segue dark" id="slide-45" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="segue dark" id="slide-46" style="background:; background-repeat:no-repeat; background-position:center; ">
   <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
   <hgroup>
     <h2><div>自製和管理R的套件</div></h2>
@@ -752,7 +778,7 @@ source(&quot;learning.R&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="large" id="slide-46" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-47" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -764,14 +790,13 @@ source(&quot;learning.R&quot;)
 
 <p>並且解決不同系統間的路徑問題</p>
 
-<pre><code class="r"># library(RAWSCLI)
-# s3api_get_object
+<pre><code class="r">library(RAWSCLI)
 </code></pre>
 
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-47" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-48" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -784,17 +809,17 @@ source(&quot;learning.R&quot;)
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-48" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="" id="slide-49" style="background:; background-repeat:no-repeat; background-position:center; ">
   <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
   <article data-timings="">
     
 <script>
-youtube_entered["slide-48"] = false;
-$('#slide-48').on('slideenter', function(){
-  if (youtube_entered["slide-48"]) return;
+youtube_entered["slide-49"] = false;
+$('#slide-49').on('slideenter', function(){
+  if (youtube_entered["slide-49"]) return;
   $(this).find('article')
     .append('<iframe width="640" height="360" src="http://www.youtube.com/embed/OCQU6M4pPiw?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>')
-  youtube_entered["slide-48"] = true;
+  youtube_entered["slide-49"] = true;
 });
 /*$('.YT').on('slideleave', function(){
   $(this).find('iframe').remove();
@@ -804,7 +829,7 @@ $('#slide-48').on('slideenter', function(){
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="large" id="slide-49" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-50" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -819,7 +844,7 @@ $('#slide-48').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-50" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-51" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -837,7 +862,7 @@ $('#slide-48').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-51" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-52" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -860,7 +885,7 @@ write_PACKAGES(&quot;/pub/RWin/bin/windows/contrib/2.9&quot;,
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-52" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-53" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -875,7 +900,7 @@ write_PACKAGES(&quot;/pub/RWin/bin/windows/contrib/2.9&quot;,
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="segue dark" id="slide-53" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="segue dark" id="slide-54" style="background:; background-repeat:no-repeat; background-position:center; ">
   <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
   <hgroup>
     <h2><div>利用客製化的Dashboard</br></br>來監控系統成效</div></h2>
@@ -886,7 +911,7 @@ write_PACKAGES(&quot;/pub/RWin/bin/windows/contrib/2.9&quot;,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="large" id="slide-54" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-55" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -899,17 +924,17 @@ write_PACKAGES(&quot;/pub/RWin/bin/windows/contrib/2.9&quot;,
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-55" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="" id="slide-56" style="background:; background-repeat:no-repeat; background-position:center; ">
   <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
   <article data-timings="">
     
 <script>
-youtube_entered["slide-55"] = false;
-$('#slide-55').on('slideenter', function(){
-  if (youtube_entered["slide-55"]) return;
+youtube_entered["slide-56"] = false;
+$('#slide-56').on('slideenter', function(){
+  if (youtube_entered["slide-56"]) return;
   $(this).find('article')
     .append('<iframe width="640" height="360" src="http://www.youtube.com/embed/3Y81BCQvd-o?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>')
-  youtube_entered["slide-55"] = true;
+  youtube_entered["slide-56"] = true;
 });
 /*$('.YT').on('slideleave', function(){
   $(this).find('iframe').remove();
@@ -919,7 +944,7 @@ $('#slide-55').on('slideenter', function(){
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="large" id="slide-56" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-57" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -936,7 +961,7 @@ $('#slide-55').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-57" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-58" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -949,7 +974,7 @@ $('#slide-55').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-58" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-59" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -960,17 +985,17 @@ $('#slide-55').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="" id="slide-59" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="" id="slide-60" style="background:; background-repeat:no-repeat; background-position:center; ">
   <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
   <article data-timings="">
     
 <script>
-youtube_entered["slide-59"] = false;
-$('#slide-59').on('slideenter', function(){
-  if (youtube_entered["slide-59"]) return;
+youtube_entered["slide-60"] = false;
+$('#slide-60').on('slideenter', function(){
+  if (youtube_entered["slide-60"]) return;
   $(this).find('article')
     .append('<iframe width="640" height="360" src="http://www.youtube.com/embed/3Y81BCQvd-o?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>')
-  youtube_entered["slide-59"] = true;
+  youtube_entered["slide-60"] = true;
 });
 /*$('.YT').on('slideleave', function(){
   $(this).find('iframe').remove();
@@ -980,7 +1005,7 @@ $('#slide-59').on('slideenter', function(){
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="dark segue" id="slide-60" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="dark segue" id="slide-61" style="background:; background-repeat:no-repeat; background-position:center; ">
   <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
   <hgroup>
     <h2>R 套件和CI(Continuous Integration)</h2>
@@ -991,7 +1016,7 @@ $('#slide-59').on('slideenter', function(){
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="large" id="slide-61" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-62" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -1006,7 +1031,7 @@ $('#slide-59').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-62" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-63" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -1025,7 +1050,7 @@ $('#slide-59').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-63" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-64" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -1040,7 +1065,7 @@ $('#slide-59').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-64" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-65" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -1057,7 +1082,7 @@ $('#slide-59').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-65" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-66" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -1070,7 +1095,7 @@ $('#slide-59').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-66" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-67" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -1083,7 +1108,7 @@ $('#slide-59').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-67" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-68" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -1098,12 +1123,16 @@ $('#slide-59').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-68" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-69" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
-  <h3>本地端開發完成，更新版本，git push到git repository</h3>
+  
 </hgroup>
 <article class = 'flexbox vcenter'>
+<p>Work Flow</p>
+
+<h3>本地端開發完成，更新版本，git push到git repository</h3>
+
 <h3>jenkins獲知git repository已更新，開始套件的測試</h3>
 
 <h3>套件測試通過，利用<code>R CMD</code>部署套件到私有R Repository</h3>
@@ -1113,7 +1142,7 @@ $('#slide-59').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-69" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-70" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -1128,7 +1157,7 @@ $('#slide-59').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="dark segue" id="slide-70" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="dark segue" id="slide-71" style="background:; background-repeat:no-repeat; background-position:center; ">
   <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
   <hgroup>
     <h2>利用CRAN套件進行系統狀態的通知</h2>
@@ -1139,7 +1168,7 @@ $('#slide-59').on('slideenter', function(){
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="large" id="slide-71" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-72" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -1156,7 +1185,7 @@ $('#slide-59').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-72" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-73" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -1174,7 +1203,7 @@ $('#slide-59').on('slideenter', function(){
 </article>
 <!-- Presenter Notes -->
 </slide>
-<slide class="large" id="slide-73" style="background:; background-repeat:no-repeat; background-position:center; ">
+<slide class="large" id="slide-74" style="background:; background-repeat:no-repeat; background-position:center; ">
 <img src="assets/img/Taiwan-R-logo.png" class="logo fit100" />
 <hgroup>
   
@@ -1457,13 +1486,13 @@ $('#slide-59').on('slideenter', function(){
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=45 title='<div>自製和管理R的套件</div>'>
+        data-slide=45 title=''>
          45
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=46 title=''>
+        data-slide=46 title='<div>自製和管理R的套件</div>'>
          46
       </a>
     </li>
@@ -1505,13 +1534,13 @@ $('#slide-59').on('slideenter', function(){
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=53 title='<div>利用客製化的Dashboard</br></br>來監控系統成效</div>'>
+        data-slide=53 title=''>
          53
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=54 title=''>
+        data-slide=54 title='<div>利用客製化的Dashboard</br></br>來監控系統成效</div>'>
          54
       </a>
     </li>
@@ -1547,13 +1576,13 @@ $('#slide-59').on('slideenter', function(){
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=60 title='R 套件和CI(Continuous Integration)'>
+        data-slide=60 title=''>
          60
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=61 title=''>
+        data-slide=61 title='R 套件和CI(Continuous Integration)'>
          61
       </a>
     </li>
@@ -1595,7 +1624,7 @@ $('#slide-59').on('slideenter', function(){
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=68 title='本地端開發完成，更新版本，git push到git repository'>
+        data-slide=68 title=''>
          68
       </a>
     </li>
@@ -1607,13 +1636,13 @@ $('#slide-59').on('slideenter', function(){
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=70 title='利用CRAN套件進行系統狀態的通知'>
+        data-slide=70 title=''>
          70
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=71 title=''>
+        data-slide=71 title='利用CRAN套件進行系統狀態的通知'>
          71
       </a>
     </li>
@@ -1627,6 +1656,12 @@ $('#slide-59').on('slideenter', function(){
       <a href="#" target="_self" rel='tooltip' 
         data-slide=73 title=''>
          73
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=74 title=''>
+         74
       </a>
     </li>
   </ul>
