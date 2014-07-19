@@ -2,9 +2,12 @@ base
 data.table
 dplyr
 knitr
+RAWSCLI
 rbenchmark
 RColorBrewer
+Rcpp
 reshape2
+rjson
 slidify
 wordcloud
 xtable

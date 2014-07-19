@@ -8,6 +8,8 @@ highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : zenburn      # 
 widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
+license: by-nc-sa
+logo: Taiwan-R-logo.png
 --- &vcenter .large
 
 <script>var youtube_entered = {};</script>
@@ -473,9 +475,9 @@ source("learning.R")
 
 散布R 應用到其他機器
 
-需要用套件(package)
+建議使用套件(package)
 
-並且解決不同系統間的路徑問題
+解決所有相依性問題
 
 ```{r RAWSCLI, eval=TRUE, echo=TRUE, results='markup'}
 library(RAWSCLI)
@@ -542,9 +544,7 @@ write_PACKAGES("/pub/RWin/bin/windows/contrib/2.9",
 
 2012年Rstudio Inc.發佈了[Shiny](http://shiny.rstudio.com/)套件
 
-R 使用者已經可以開發簡單的網頁應用
-
---- &youtube yt:3Y81BCQvd-o
+R 已經可以將分析結果變成網頁應用
 
 --- &vcenter .large
 
@@ -572,13 +572,13 @@ pkg <- c("ggplot2", "googleVis", "plotCI", "webvis", "RnavGraph",
          "spc", "IQCC", "qcc", "animation", "biOps", "RgoogleMaps")
 pkgstat <- summarise(group_by(pkgstat, package), count=length(date))
 pkgstat <- filter(pkgstat, package %in% pkg)
-.par <- par()
-par(cex = 2)
+# .par <- par()
+# par(cex = 2)
 pal <- c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3",
   "#FF7F00", "#FFFF33", "#A65628", "#F781BF", "#999999")
-wordcloud(pkgstat$package, log(pkgstat$count, 2), 
+wordcloud(pkgstat$package, freq=1/nchar(pkgstat$package), 
           vfont=c("serif","plain"), colors=pal)
-par(.par)
+# par(.par)
 ```
 
 --- &vcenter .large

@@ -8,6 +8,8 @@ highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : zenburn      # 
 widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
+license: by-nc-sa
+logo: Taiwan-R-logo.png
 --- &vcenter .large
 
 <script>var youtube_entered = {};</script>
@@ -424,9 +426,9 @@ Error: 無法開啟連結
 
 散布R 應用到其他機器
 
-需要用套件(package)
+建議使用套件(package)
 
-並且解決不同系統間的路徑問題
+解決所有相依性問題
 
 
 ```r
@@ -494,9 +496,7 @@ write_PACKAGES("/pub/RWin/bin/windows/contrib/2.9",
 
 2012年Rstudio Inc.發佈了[Shiny](http://shiny.rstudio.com/)套件
 
-R 使用者已經可以開發簡單的網頁應用
-
---- &youtube yt:3Y81BCQvd-o
+R 已經可以將分析結果變成網頁應用
 
 --- &vcenter .large
 
